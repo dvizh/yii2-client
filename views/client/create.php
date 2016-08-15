@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Html;
 
-$this->title = 'Добавить модель';
-$this->params['breadcrumbs'][] = ['label' => 'Сотрудники', 'url' => ['index']];
+$this->title = 'Добавить клиента';
+$this->params['breadcrumbs'][] = ['label' => 'Клиенты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="model-create">

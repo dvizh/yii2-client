@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 $this->title = Html::encode($model->name);
-$this->params['breadcrumbs'][] = ['label' => 'Сотрудники', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Клиенты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Обновить';
 ?>
 <div class="model-update">
