@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = 'Обновить';
     <?php if(class_exists('\pistol88\order\widgets\ClientOrders')) { ?>
         <div class="block">
             <h2>Заказы</h2>
-            <?=\pistol88\order\widgets\ClientOrders::widget(['client_id' => $model->id]);?>
+            <?=\pistol88\order\widgets\ClientOrders::widget(['client' => $model]);?>
         </div>
     <?php } ?>
     
