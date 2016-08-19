@@ -47,9 +47,10 @@ class Client extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['code'], 'unique'],
             [['category_id', 'sort', 'persent'], 'integer'],
             [['text', 'status', 'phone', 'email', 'birthday', 'comment', 'promocode'], 'string'],
-            [['name'], 'string', 'max' => 200],
+            [['name', 'code'], 'string', 'max' => 200],
         ];
     }
 
@@ -57,6 +58,7 @@ class Client extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'code' => 'Индентификатор',
             'category_id' => 'Категория',
             'status' => 'Статус',
             'pay_type' => 'Тип выплат',
