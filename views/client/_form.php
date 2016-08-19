@@ -8,6 +8,7 @@ use pistol88\client\models\Category;
 use pistol88\client\models\Mark;
 use pistol88\gallery\widgets\Gallery;
 use kartik\select2\Select2;
+use pistol88\promocode\widgets\AddNew;
 
 \pistol88\client\assets\BackendAsset::register($this);
 ?>
@@ -18,10 +19,6 @@ use kartik\select2\Select2;
     
     <div class="form-group client-control">
         <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        
-            <?php if(!$model->isNewRecord) { ?>
-            <a class="btn btn-default" href="<?=Url::toRoute(['model/delete', 'id' => $model->id]);?>" title="Удалить" aria-label="Удалить" data-confirm="Вы уверены, что хотите удалить этот элемент?" data-method="post" data-pjax="0"><span class="glyphicon glyphicon-trash"></span></a>
-        <?php } ?>
     </div>
     
     <div class="row">
@@ -80,8 +77,12 @@ use kartik\select2\Select2;
                 ],
             ]); ?>
         </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-            <?= $form->field($model, 'promocode')->textInput() ?>
+        <div class="col-lg-2 col-md-3 col-xs-5">
+            <?= $form->field($model, 'promocode')->textInput(['class' => 'place-to-new-promocode form-control']) ?>
+        </div>
+        <div class="col-lg-1 col-md-1 col-xs-1">
+            <label>Новый</label>
+            <?=AddNew::widget();?>
         </div>
     </div>
 
