@@ -12,7 +12,7 @@ class ClientSearch extends Client
     {
         return [
             [['id', 'category_id'], 'integer'],
-            [['name', 'comment', 'status', 'birthday', 'phone', 'email'], 'safe'],
+            [['name', 'comment', 'status', 'birthday', 'phone', 'email', 'code'], 'safe'],
         ];
     }
 
@@ -47,6 +47,7 @@ class ClientSearch extends Client
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
+            'code' => $this->code,
             'status' => $this->status,
         ]);
 
