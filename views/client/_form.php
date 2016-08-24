@@ -16,11 +16,7 @@ use pistol88\promocode\widgets\AddNew;
 <div class="model-form">
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-    
-    <div class="form-group client-control">
-        <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
-    
+
     <div class="row">
         <div class="col-lg-2 col-md-4 col-xs-6">
             <?= $form->field($model, 'code')->textInput() ?>
@@ -82,7 +78,7 @@ use pistol88\promocode\widgets\AddNew;
         </div>
         <div class="col-lg-1 col-md-1 col-xs-1">
             <label>Новый</label>
-            <?=AddNew::widget();?>
+            <?=AddNew::widget(['name' => $model->name]);?>
         </div>
     </div>
 
@@ -94,9 +90,6 @@ use pistol88\promocode\widgets\AddNew;
     
     <div class="form-group client-control">
         <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?php if(!$model->isNewRecord) { ?>
-            <a class="btn btn-default" href="<?=Url::toRoute(['model/delete', 'id' => $model->id]);?>" title="Удалить" aria-label="Удалить" data-confirm="Вы уверены, что хотите удалить этот элемент?" data-method="post" data-pjax="0"><span class="glyphicon glyphicon-trash"></span></a>
-        <?php } ?>
     </div>
 
     <?php ActiveForm::end(); ?>

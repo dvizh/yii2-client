@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'export' => false,
         'columns' => [
+            /*
             [
                 'attribute' => 'image',
                 'filter' => false,
@@ -35,8 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 }
             ],
+             * */
             ['attribute' => 'id', 'filter' => false, 'options' => ['style' => 'width: 55px;']],
             'name',
+            'code',
+            'phone',
+            'promocode',
             [
                 'attribute' => 'status',
                 'filter' => Html::activeDropDownList(
@@ -60,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'category.name'
             ],
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}',  'buttonOptions' => ['class' => 'btn btn-default'], 'options' => ['style' => 'width: 125px;']],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update} {delete}',  'buttonOptions' => ['class' => 'btn btn-default'], 'options' => ['style' => 'width: 155px;']],
         ],
     ]); ?>
 

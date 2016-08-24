@@ -12,7 +12,7 @@ class ClientSearch extends Client
     {
         return [
             [['id', 'category_id'], 'integer'],
-            [['name', 'comment', 'status', 'birthday', 'phone', 'email', 'code'], 'safe'],
+            [['name', 'comment', 'status', 'birthday', 'phone', 'email', 'code', 'promocode'], 'safe'],
         ];
     }
 
@@ -48,6 +48,7 @@ class ClientSearch extends Client
             'id' => $this->id,
             'category_id' => $this->category_id,
             'code' => $this->code,
+            'promocode' => $this->promocode,
             'status' => $this->status,
         ]);
 

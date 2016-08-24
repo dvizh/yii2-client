@@ -74,6 +74,13 @@ class ClientController extends Controller
         }
     }
 
+    public function actionView($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->render('view', ['model' => $model, 'module' => $this->module]);
+    }
+    
     public function actionDelete($id)
     {
         if($model = $this->findModel($id)) {

@@ -46,7 +46,7 @@ class Client extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'category_id'], 'required'],
             [['code'], 'unique'],
             [['category_id', 'sort', 'persent'], 'integer'],
             [['text', 'status', 'phone', 'email', 'birthday', 'comment', 'promocode'], 'string'],
@@ -73,6 +73,8 @@ class Client extends \yii\db\ActiveRecord
             'email' => 'E-mail',
             'birthday' => 'День рождения',
             'comment' => 'Комментарий',
+            'created_at' => 'Дата добавления',
+            'updated_at' => 'Дата редактирования',
         ];
     }
     
