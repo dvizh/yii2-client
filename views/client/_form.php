@@ -84,9 +84,7 @@ use pistol88\promocode\widgets\AddNew;
 
     <?= $form->field($model, 'comment')->textArea() ?>
 
-    <?=Gallery::widget(['model' => $model]); ?>
-
-    <br />
+    <?php /* Gallery::widget(['model' => $model]); */ ?>
     
     <div class="form-group client-control">
         <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

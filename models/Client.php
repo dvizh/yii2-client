@@ -58,7 +58,7 @@ class Client extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'code' => 'Индентификатор',
+            'code' => 'Идентификатор',
             'category_id' => 'Категория',
             'status' => 'Статус',
             'pay_type' => 'Тип выплат',
