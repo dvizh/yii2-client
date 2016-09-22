@@ -18,7 +18,7 @@ class m160728_081813_Mass extends Migration {
         try {
             $this->createTable('{{%client_client}}', [
                 'id' => Schema::TYPE_PK . "",
-                'category_id' => Schema::TYPE_INTEGER . "(10) NOT NULL",
+                'category_id' => Schema::TYPE_INTEGER . "(11)",
                 'user_id' => Schema::TYPE_INTEGER . "(10) NOT NULL",
                 'name' => Schema::TYPE_STRING . "(200) NOT NULL",
                 'phone' => Schema::TYPE_STRING . "(55) NULL",
