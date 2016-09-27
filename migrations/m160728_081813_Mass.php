@@ -28,6 +28,8 @@ class m160728_081813_Mass extends Migration {
                 'sort' => Schema::TYPE_INTEGER . "(11)",
                 'promocode' => Schema::TYPE_TEXT . "(55)",
                 'status' => Schema::TYPE_STRING . "(55)",
+				'updated_at' => Schema::TYPE_TIMESTAMP,
+				'created_at' => Schema::TYPE_TIMESTAMP,
                 ], $tableOptions);
 
             $this->createIndex('category_id', '{{%client_client}}', 'category_id', 0);
