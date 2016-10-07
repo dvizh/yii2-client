@@ -21,6 +21,7 @@ class m160728_081813444_Mass extends Migration {
                 'category_id' => Schema::TYPE_INTEGER . "(11)",
                 'user_id' => Schema::TYPE_INTEGER . "(10) NOT NULL",
                 'name' => Schema::TYPE_STRING . "(200) NOT NULL",
+				'code' => Schema::TYPE_STRING . "(200)",
                 'phone' => Schema::TYPE_STRING . "(55) NULL",
                 'birthday' => Schema::TYPE_STRING . "(55) NULL",
                 'email' => Schema::TYPE_STRING . "(55) NULL",
