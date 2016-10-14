@@ -27,8 +27,10 @@ class m160728_081813444_Mass extends Migration {
                 'email' => Schema::TYPE_STRING . "(55) NULL",
                 'comment' => Schema::TYPE_TEXT . " NULL",
                 'sort' => Schema::TYPE_INTEGER . "(11)",
+                'persent' => Schema::TYPE_INTEGER . "(11)",
                 'promocode' => Schema::TYPE_TEXT . "(55)",
                 'status' => Schema::TYPE_STRING . "(55)",
+                'text' => Schema::TYPE_TEXT . "",
 				'updated_at' => Schema::TYPE_TIMESTAMP,
 				'created_at' => Schema::TYPE_TIMESTAMP,
                 ], $tableOptions);
