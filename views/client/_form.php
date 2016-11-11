@@ -41,7 +41,7 @@ use pistol88\promocode\widgets\AddNew;
                     'size' => 'sm',
                     'language' => 'ru',
                     'clientOptions' => [
-                        'format' => 'L',
+                        'format' => 'YYYY-MM-DD',
                         'minDate' => '1922-01-01',
                         'maxDate' => date('Y-m-d'),
                     ],
