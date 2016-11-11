@@ -50,14 +50,19 @@ use pistol88\promocode\widgets\AddNew;
     </div>
     
     <div class="row">
-        <div class="col-lg-2 col-md-4 col-xs-6">
+        <div class="col-lg-2 col-md-3 col-xs-6">
             <?= $form->field($model, 'name')->textInput() ?>
         </div>
-        <div class="col-lg-2 col-md-4 col-xs-6">
+        <div class="col-lg-2 col-md-3 col-xs-6">
             <?= $form->field($model, 'phone')->textInput() ?>
         </div>
-        <div class="col-lg-2 col-md-4 col-xs-6">
+        <div class="col-lg-2 col-md-3 col-xs-6">
             <?= $form->field($model, 'email')->textInput() ?>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-6">
+            <?php if($organisation = yii::$app->get('organisation')) { ?>
+                <?php echo $form->field($model, 'organisation_id')->dropDownList(array_merge(['0' => 'Нет'], ArrayHelper::map($organisation->getList(), 'id', 'name'))) ?>
+            <?php } ?>
         </div>
     </div>
 
