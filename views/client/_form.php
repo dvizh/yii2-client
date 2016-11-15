@@ -61,7 +61,7 @@ use pistol88\promocode\widgets\AddNew;
         </div>
         <div class="col-lg-2 col-md-3 col-xs-6">
             <?php if(yii::$app->has('organization') && $organization = yii::$app->get('organization')) { ?>
-                <?php echo $form->field($model, 'organization_id')->dropDownList(array_merge(['0' => 'Нет'], ArrayHelper::map($organization->getList(), 'id', 'name'))) ?>
+                <?php echo $form->field($model, 'organization_id')->dropDownList(array_merge(['' => 'Нет'], ArrayHelper::map($organization->getList(), 'id', 'name'))) ?>
             <?php } ?>
         </div>
     </div>
