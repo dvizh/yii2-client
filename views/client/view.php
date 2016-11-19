@@ -8,6 +8,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Клиенты', 'url' => ['index'
 $this->params['breadcrumbs'][] = 'Просмотр';
 ?>
 <div class="client-view">
+    <h1><?=$this->title;?></h1>
+
     <p><a href="<?=Url::toRoute(['update', 'id' => $model->id]);?>" class="btn btn-success">Редактировать</a></p>
     
     <?=DetailView::widget([
