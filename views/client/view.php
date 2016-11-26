@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = 'Просмотр';
         ],
     ]);?>
     
-    <?php if(class_exists('\pistol88\service\widgets\PropertyToClient')) { ?>
+    <?php if(class_exists('\pistol88\service\widgets\PropertyToClient') && yii::$app->getModule('service')) { ?>
         <div class="panel panel-primary">
             <div class="panel-heading"><h3 class="panel-title">Собственность</h3></div>
             <div class="panel-body">
