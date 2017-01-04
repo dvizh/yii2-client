@@ -18,9 +18,6 @@ use pistol88\promocode\widgets\AddNew;
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <div class="row">
-        <div class="col-lg-2 col-md-4 col-xs-6">
-            <?= $form->field($model, 'code')->textInput() ?>
-        </div>
         <?php if($module->clientStatuses) { ?>
             <div class="col-lg-2 col-md-4 col-xs-6">
                 <?= $form->field($model, 'status')

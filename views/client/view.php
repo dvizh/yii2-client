@@ -10,20 +10,31 @@ $this->params['breadcrumbs'][] = 'Просмотр';
 <div class="client-view">
     <p><a href="<?=Url::toRoute(['update', 'id' => $model->id]);?>" class="btn btn-success">Редактировать</a></p>
     
-    <?=DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'code',
-            'category.name',
-            'name',
-            'birthday',
-            'email:email',
-            'phone',
-            'promocode',
-            'created_at:datetime',
-            'updated_at:datetime',
-        ],
-    ]);?>
+    <div class="row">
+        <div class="col-md-6">
+            <p><h3>Клиент</h3></p>
+            <?=DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'code',
+                    'category.name',
+                    'name',
+                    'birthday',
+                    'email:email',
+                    'phone',
+                    'promocode',
+                    'created_at:datetime',
+                    'updated_at:datetime',
+                ],
+            ]);?>
+        </div>
+        <div class="col-md-6">
+            <h3>Обращения</h3>
+            <?=\pistol88\client\widgets\Calls::widget(['client' => $model]);?>
+        </div>
+    </div>
+
+
     
     <?php if(class_exists('\pistol88\service\widgets\PropertyToClient')) { ?>
         <div class="panel panel-primary">
@@ -42,7 +53,7 @@ $this->params['breadcrumbs'][] = 'Просмотр';
             </div>
         </div>
     <?php } ?>
-
+    
     <?php if($fieldPanel = \pistol88\field\widgets\Show::widget(['model' => $model])) { ?>
         <div class="panel panel-primary">
             <div class="panel-heading"><h3 class="panel-title">Прочее</h3></div>

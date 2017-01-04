@@ -3,8 +3,6 @@ namespace pistol88\client\models;
 
 use Yii;
 use yii\helpers\Url;
-use pistol88\client\models\Category;
-use pistol88\client\models\Price;
 use pistol88\client\models\client\ClientQuery;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
@@ -76,6 +74,11 @@ class Client extends \yii\db\ActiveRecord
             'created_at' => 'Дата добавления',
             'updated_at' => 'Дата редактирования',
         ];
+    }
+    
+    public function getCalls()
+    {
+        return $this->haMany(Call::className(), ['client_id' => 'id']);
     }
     
     public function getId()
