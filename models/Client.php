@@ -46,7 +46,7 @@ class Client extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['code'], 'unique'],
-            [['category_id', 'sort', 'persent'], 'integer'],
+            [['category_id', 'sort', 'persent', 'organization_id'], 'integer'],
             [['text', 'status', 'phone', 'email', 'birthday', 'comment', 'promocode'], 'string'],
             [['name', 'code'], 'string', 'max' => 200],
         ];
@@ -73,6 +73,7 @@ class Client extends \yii\db\ActiveRecord
             'comment' => 'Комментарий',
             'created_at' => 'Дата добавления',
             'updated_at' => 'Дата редактирования',
+            'organization_id' => 'Организация',
         ];
     }
     

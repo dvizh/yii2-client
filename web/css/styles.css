@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 .menu-container {
     float: right;
     height: 45px;
+=======
+.menu-container > ul {
+    float: right;
+>>>>>>> c79ad654825798be3e70559032467924db5da20c
 }

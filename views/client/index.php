@@ -8,6 +8,13 @@ $this->title = 'Клиенты';
 $this->params['breadcrumbs'][] = $this->title;
 
 \pistol88\client\assets\BackendAsset::register($this);
+
+if(yii::$app->has('organization')) {
+    $organizations = yii::$app->organization->getList();
+    $organizations = ArrayHelper::map($organizations, 'id', 'name');
+} else {
+    $organizations = [];
+}
 ?>
 <div class="model-index">
 
@@ -40,6 +47,24 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute' => 'id', 'filter' => false, 'options' => ['style' => 'width: 55px;']],
             'name',
             'code',
+            [
+                'attribute' => 'organization_id',
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'organization_id',
+                    $organizations,
+                    ['class' => 'form-control', 'prompt' => 'Организация']
+                ),
+                'content' => function($model) use ($organizations) {
+                    foreach($organizations as $id => $name) {
+                        if($id == $model->organization_id) {
+                            return $name;
+                        }
+                    }
+                    
+                    return '';
+                }
+            ],
             'phone',
             'promocode',
             [

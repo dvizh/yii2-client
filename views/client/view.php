@@ -8,6 +8,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Клиенты', 'url' => ['index'
 $this->params['breadcrumbs'][] = 'Просмотр';
 ?>
 <div class="client-view">
+    <h1><?=$this->title;?></h1>
+
     <p><a href="<?=Url::toRoute(['update', 'id' => $model->id]);?>" class="btn btn-success">Редактировать</a></p>
     
     <div class="row">
@@ -36,7 +38,7 @@ $this->params['breadcrumbs'][] = 'Просмотр';
 
 
     
-    <?php if(class_exists('\pistol88\service\widgets\PropertyToClient')) { ?>
+    <?php if(class_exists('\pistol88\service\widgets\PropertyToClient') && yii::$app->getModule('service')) { ?>
         <div class="panel panel-primary">
             <div class="panel-heading"><h3 class="panel-title">Собственность</h3></div>
             <div class="panel-body">

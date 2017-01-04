@@ -18,6 +18,7 @@ use pistol88\promocode\widgets\AddNew;
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <div class="row">
+<<<<<<< HEAD
         <?php if($module->clientStatuses) { ?>
             <div class="col-lg-2 col-md-4 col-xs-6">
                 <?= $form->field($model, 'status')
@@ -32,34 +33,34 @@ use pistol88\promocode\widgets\AddNew;
             </div>
         <?php } ?>
         <div class="col-lg-2 col-md-4 col-xs-6">
+=======
+        <div class="col-lg-2 col-md-3 col-xs-6">
+            <?= $form->field($model, 'name')->textInput() ?>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-6">
+            <?= $form->field($model, 'phone')->textInput() ?>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-xs-6">
+>>>>>>> c79ad654825798be3e70559032467924db5da20c
             <?= $form->field($model, 'birthday')->widget(
                 DatePicker::className(), [
                     'addon' => false,
                     'size' => 'sm',
                     'language' => 'ru',
                     'clientOptions' => [
-                        'format' => 'L',
+                        'format' => 'DD.MM.YYYY',
                         'minDate' => '1922-01-01',
                         'maxDate' => date('Y-m-d'),
                     ],
             ]);?>
         </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-2 col-md-4 col-xs-6">
-            <?= $form->field($model, 'name')->textInput() ?>
-        </div>
-        <div class="col-lg-2 col-md-4 col-xs-6">
-            <?= $form->field($model, 'phone')->textInput() ?>
-        </div>
-        <div class="col-lg-2 col-md-4 col-xs-6">
+        
+        <div class="col-lg-2 col-md-3 col-xs-6">
             <?= $form->field($model, 'email')->textInput() ?>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-xs-6">
+        
+        <div class="col-lg-2 col-md-3 col-xs-6">
             <?= $form->field($model, 'category_id')
                 ->widget(Select2::classname(), [
                 'data' => Category::buildTextTree(),
@@ -70,6 +71,27 @@ use pistol88\promocode\widgets\AddNew;
                 ],
             ]); ?>
         </div>
+
+        <?php if($module->clientStatuses) { ?>
+            <div class="col-lg-2 col-md-3 col-xs-6">
+                <?= $form->field($model, 'status')
+                    ->widget(Select2::classname(), [
+                    'data' => $module->clientStatuses,
+                    'language' => 'ru',
+                    //'options' => ['placeholder' => 'Выберите статус ...'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]); ?>
+            </div>
+        <?php } ?>
+        
+        <?php if(yii::$app->has('organization') && $organizations = yii::$app->organization->getList()) { ?>
+            <div class="col-lg-2 col-md-3 col-xs-6">
+                <?php echo $form->field($model, 'organization_id')->dropDownList(array_merge(['' => 'Нет'], ArrayHelper::map($organizations, 'id', 'name'))) ?>
+            </div>
+        <?php } ?>
+        
         <div class="col-lg-2 col-md-3 col-xs-5">
             <?= $form->field($model, 'promocode')->textInput(['class' => 'place-to-new-promocode form-control']) ?>
         </div>
