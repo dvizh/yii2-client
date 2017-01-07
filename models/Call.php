@@ -42,8 +42,8 @@ class Call extends \yii\db\ActiveRecord
     {
         return [
             [['client_id', 'time'], 'required'],
-            [['category_id', 'client_id', 'staffer_id', 'matter_id'], 'integer'],
-            [['comment', 'result', 'status'], 'string'],
+            [['category_id', 'client_id', 'staffer_id'], 'integer'],
+            [['comment', 'result', 'status', 'matter'], 'string'],
         ];
     }
 
@@ -54,8 +54,8 @@ class Call extends \yii\db\ActiveRecord
           'client_id' => 'Клиент',
           'staffer_id' => 'Сотрудник',
           'time' => 'Время',
-          'status' => 'Статус',
-          'matter_id' => 'Предмет',
+          'status' => 'Статус клиента',
+          'matter' => 'Предмет',
           'category_id' => 'Категория',
           'result' => 'Результат',
           'comment' => 'Комментарий',
@@ -71,7 +71,7 @@ class Call extends \yii\db\ActiveRecord
     
     public function getCategory()
     {
-        return $this->hasOne(CategoryCall::className(), ['id' => 'category_id']);
+        return $this->hasOne(CallCategory::className(), ['id' => 'category_id']);
     }
     
     public function getClient()
@@ -84,5 +84,27 @@ class Call extends \yii\db\ActiveRecord
         $stafferModel = yii::$app->getModule('client')->stafferModel;
         
         return $this->hasOne($stafferModel, ['id' => 'staffer_id']);
+    }
+    
+    public function afterSave($insert, $changedAttributes)
+    {
+        if($this->status) {
+            $this->client->setStatus($this->status);
+        }
+        
+        parent::afterSave($insert, $changedAttributes);
+    }
+    
+    public function beforeValidate()
+    {
+        if(empty($this->staffer_id)) {
+            $this->staffer_id = yii::$app->user->id;
+        }
+        
+        if($this->isNewRecord && empty($this->time)) {
+            $this->time = date('Y-m-d H:i:s');
+        }
+        
+        return parent::beforeValidate();
     }
 }

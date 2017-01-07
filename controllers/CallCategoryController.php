@@ -1,15 +1,16 @@
 <?php
+
 namespace pistol88\client\controllers;
 
-use yii;
-use pistol88\client\models\call\CallSearch;
-use pistol88\client\models\Call;
+use Yii;
+use pistol88\client\models\CallCategory;
+use pistol88\client\models\category\CallCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
-class CallController extends Controller
+class CallCategoryController extends Controller
 {
     public function behaviors()
     {
@@ -18,9 +19,10 @@ class CallController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
+                        'actions' => ['index', 'delete', 'update', 'create'],
                         'allow' => true,
                         'roles' => $this->module->adminRoles,
-                    ]
+                    ],
                 ]
             ],
             'verbs' => [
@@ -35,29 +37,26 @@ class CallController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new CallSearch();
+        $searchModel = new CallCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'module' => $this->module,
         ]);
     }
 
-    public function actionAjaxCreate()
+    public function actionCreate()
     {
-        $model = new Call;
+        $model = new CallCategory;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $json = ['result' => 'success'];
+            return $this->redirect(['update', 'id' => $model->id]);
         } else {
-            $model->validate();
-            print_r($model->getErrors());
-            $json = ['result' => 'fail'];
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
-        
-        die(json_encode($json));
     }
 
     public function actionUpdate($id)
@@ -65,39 +64,29 @@ class CallController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $module = $this->module;
-
             return $this->redirect(['update', 'id' => $model->id]);
         } else {
-            return $this->render('update', ['model' => $model, 'module' => $this->module]);
+            return $this->render('update', [
+                'model' => $model,
+            ]);
         }
     }
 
-    public function actionView($id)
-    {
-        $model = $this->findModel($id);
-
-        return $this->render('view', ['model' => $model, 'module' => $this->module]);
-    }
-    
     public function actionDelete($id)
     {
-        if($model = $this->findModel($id)) {
-            $this->findModel($id)->delete();
-            $module = $this->module;
-        }
-		
-        return $this->redirect(yii::$app->request->referrer);
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
     }
 
     protected function findModel($id)
     {
-        $model = new Call;
+        $model = new CallCategory;
         
         if (($model = $model::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested call does not exist.');
+            throw new NotFoundHttpException('The requested model does not exist.');
         }
     }
 }

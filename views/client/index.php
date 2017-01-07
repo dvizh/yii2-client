@@ -72,11 +72,11 @@ if(yii::$app->has('organization')) {
                 'filter' => Html::activeDropDownList(
                     $searchModel,
                     'status',
-                    $module->clientStatuses,
+                    yii::$app->client->clientStatuses,
                     ['class' => 'form-control', 'prompt' => 'Статус']
                 ),
                 'content' => function($model) use ($module) {
-                    return @$module->clientStatuses[$model->status];
+                    return @yii::$app->client->clientStatuses,[$model->status];
                 }
             ],
             [

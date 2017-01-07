@@ -89,15 +89,4 @@ class CategoryController extends Controller
             throw new NotFoundHttpException('The requested model does not exist.');
         }
     }
-    
-    protected function findModelBySlug($slug)
-    {
-        $model = new Category;
-        
-        if (($model = $model::findOne(['slug' => $slug])) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested model does not exist.');
-        }
-    }
 }

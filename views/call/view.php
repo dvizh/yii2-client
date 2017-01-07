@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = 'Просмотр';
                 'model' => $model,
                 'attributes' => [
                     'code',
+                    'status',
                     'category.name',
-                    ['attribute' => 'status', 'value' => @yii::$app->client->clientStatuses[$model->status]],
                     'name',
                     'birthday',
                     'email:email',
@@ -32,20 +32,11 @@ $this->params['breadcrumbs'][] = 'Просмотр';
             ]);?>
         </div>
         <div class="col-md-6">
-            <?php if($fieldPanel = \pistol88\field\widgets\Show::widget(['model' => $model])) { ?>
-                <p><h3>Прочее</h3></p>
-                <?=$fieldPanel;?>
-            <?php } ?>
-        </div>
-    </div>
-
-    
-    <div class="panel panel-primary">
-        <div class="panel-heading"><h3 class="panel-title">Обращения</h3></div>
-        <div class="panel-body">
+            <h3>Обращения</h3>
             <?=\pistol88\client\widgets\Calls::widget(['client' => $model]);?>
         </div>
     </div>
+
 
     
     <?php if(class_exists('\pistol88\service\widgets\PropertyToClient') && yii::$app->getModule('service')) { ?>
@@ -66,5 +57,12 @@ $this->params['breadcrumbs'][] = 'Просмотр';
         </div>
     <?php } ?>
     
-
+    <?php if($fieldPanel = \pistol88\field\widgets\Show::widget(['model' => $model])) { ?>
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h3 class="panel-title">Прочее</h3></div>
+            <div class="panel-body">
+                <?=$fieldPanel;?>
+            </div>
+        </div>
+    <?php } ?>
 </div>

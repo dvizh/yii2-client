@@ -18,12 +18,12 @@ use pistol88\promocode\widgets\AddNew;
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <div class="row">
-
-        <?php if(yii::$app->client->clientStatuses) { ?>
+<<<<<<< HEAD
+        <?php if($module->clientStatuses) { ?>
             <div class="col-lg-2 col-md-4 col-xs-6">
                 <?= $form->field($model, 'status')
                     ->widget(Select2::classname(), [
-                    'data' => yii::$app->client->clientStatuses,
+                    'data' => $module->clientStatuses,
                     'language' => 'ru',
                     'options' => ['placeholder' => 'Выберите статус ...'],
                     'pluginOptions' => [
@@ -33,7 +33,8 @@ use pistol88\promocode\widgets\AddNew;
             </div>
         <?php } ?>
         <div class="col-lg-2 col-md-4 col-xs-6">
-        
+=======
+        <div class="col-lg-2 col-md-3 col-xs-6">
             <?= $form->field($model, 'name')->textInput() ?>
         </div>
         <div class="col-lg-2 col-md-3 col-xs-6">
@@ -41,6 +42,7 @@ use pistol88\promocode\widgets\AddNew;
         </div>
 
         <div class="col-lg-2 col-md-3 col-xs-6">
+>>>>>>> c79ad654825798be3e70559032467924db5da20c
             <?= $form->field($model, 'birthday')->widget(
                 DatePicker::className(), [
                     'addon' => false,

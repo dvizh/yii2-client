@@ -15,7 +15,7 @@ class CallCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['parent_id'], 'integer'],
+            [['parent_id', 'sort'], 'integer'],
             [['name'], 'required'],
             [['name'], 'string', 'max' => 55],
         ];
@@ -25,8 +25,9 @@ class CallCategory extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'parent_id' => 'Родительская категория',
-            'name' => 'Имя категории',
+            'parent_id' => 'Р РѕРґРёС‚РµР»СЊСЃРєР°СЏ РєР°С‚РµРіРѕСЂРёСЏ',
+            'name' => 'РРјСЏ РєР°С‚РµРіРѕСЂРёРё',
+            'sort' => 'Р§РёСЃР»Рѕ СЃРѕСЂС‚РёСЂРѕРІРєРё',
         ];
     }
 	

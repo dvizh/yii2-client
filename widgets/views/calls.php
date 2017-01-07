@@ -17,14 +17,31 @@ use kartik\select2\Select2;
     ]);
     ?>
 
-    <?php $form = ActiveForm::begin(['action' => ['/client/call/ajax-create'], 'options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['action' => ['/client/call/ajax-create'], 'options' => ['id' => 'call-widget-add-form', 'enctype' => 'multipart/form-data']]); ?>
 
+        <?= $form->field($model, 'status')->label(false)->textInput(['value' => $client->id, 'type' => 'hidden']) ?>
+    
         <div class="row">
             <div class="col-md-6">
-                <?= $form->field($model, 'status')->label(false)->dropDownList(['value' => $client->id, 'type' => 'hidden']) ?>
+                <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(CallCategory::find()->all(), 'id', 'name')) ?>
             </div>
             <div class="col-md-6">
-                <?= $form->field($model, 'matter_id')->label(false)->dropDownList(['value' => $client->id, 'type' => 'hidden']) ?>
+                <?= $form->field($model, 'status')->dropDownList(yii::$app->client->clientStatuses, ['prompt' => 'Не менять статус...']); ?>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'result')->dropDownList(yii::$app->client->callResults) ?>
+            </div>
+            <div class="col-md-6">
+                <?= $form->field($model, 'matter')->dropDownList(yii::$app->client->callMatters) ?>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <?= $form->field($model, 'comment')->textArea() ?>
             </div>
         </div>
 
@@ -40,7 +57,7 @@ use kartik\select2\Select2;
     
     <?php Pjax::begin(); ?>
 
-    <a href="" class="client-property-update"> </a>
+    <a href="" class="client-calls-update"> </a>
 
     <?php
     echo \kartik\grid\GridView::widget([
@@ -49,9 +66,43 @@ use kartik\select2\Select2;
         'export' => false,
         'columns' => [
             //['attribute' => 'id', 'filter' => false, 'options' => ['style' => 'width: 55px;']],
-            'time',
-            ['attribute' => 'client.name', 'label' => 'Клиент'],
-            ['attribute' => 'staffer.name', 'label' => 'Сотрудник'],
+            ['attribute' => 'time', 'label' => 'Время', 'content' => function($model) {
+                return date('d.m.Y H:i:s', strtotime($model->time));
+            }],
+            ['attribute' => 'client.name', 'label' => 'Клиент', 'content' => function($model) {
+                if($model->client) {
+                    return Html::a($model->client->name, [yii::$app->client->clientProfileUrl, 'id' => $model->client_id]);
+                }
+            }],
+            ['attribute' => 'staffer.name', 'label' => 'Сотрудник', 'content' => function($model) {
+                if($model->staffer) {
+                    return Html::a($model->staffer->name, [yii::$app->client->stafferProfileUrl, 'id' => $model->staffer_id]);
+                }
+            }],
+            [
+                'attribute' => 'matter',
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'matter',
+                    yii::$app->client->callMatters,
+                    ['class' => 'form-control', 'prompt' => 'Предмет']
+                ),
+                'content' => function($model) {
+                    return @yii::$app->client->callMatters[$model->matter];
+                }
+            ],
+            [
+                'attribute' => 'result',
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'result',
+                    yii::$app->client->callResults,
+                    ['class' => 'form-control', 'prompt' => 'Результат']
+                ),
+                'content' => function($model) {
+                    return @yii::$app->client->callResults[$model->result];
+                }
+            ],
             [
                 'attribute' => 'category_id',
                 'label' => 'Категория',
@@ -68,14 +119,14 @@ use kartik\select2\Select2;
                 'filter' => Html::activeDropDownList(
                     $searchModel,
                     'status',
-                    $module->callStatuses,
+                    yii::$app->client->clientStatuses,
                     ['class' => 'form-control', 'prompt' => 'Статус']
                 ),
-                'content' => function($model) use ($module) {
-                    return @$module->callStatuses[$model->status];
+                'content' => function($model) {
+                    return @yii::$app->client->clientStatuses[$model->status];
                 }
             ],
-            //['class' => 'yii\grid\ActionColumn', 'controller' => '/client/property', 'template' => '{view} {update} {delete}',  'buttonOptions' => ['class' => 'btn btn-default'], 'options' => ['style' => 'width: 155px;']],
+            ['class' => 'yii\grid\ActionColumn', 'controller' => '/client/call', 'template' => '{delete}',  'buttonOptions' => ['class' => 'btn btn-default'], 'options' => ['style' => 'width: 155px;']],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

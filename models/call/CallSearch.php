@@ -11,7 +11,7 @@ class CallSearch extends Call
     public function rules()
     {
         return [
-            [['id', 'staffer_id', 'client_id', 'matter_id'], 'integer'],
+            [['id', 'staffer_id', 'client_id', 'matter'], 'integer'],
             [['status', 'comment', 'date'], 'safe'],
         ];
     }
@@ -49,6 +49,7 @@ class CallSearch extends Call
             'staffer_id' => $this->staffer_id,
             'client_id' => $this->client_id,
             'status' => $this->status,
+            'matter' => $this->matter,
         ]);
 
         $query->andFilterWhere(['like', 'comment', $this->comment]);

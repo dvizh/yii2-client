@@ -12,6 +12,8 @@ class Calls extends \yii\base\Widget
     
     public function init()
     {
+        \pistol88\client\assets\CallWidgetAsset::register($this->getView());
+        
         return parent::init();
     }
 

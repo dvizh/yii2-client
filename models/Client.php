@@ -28,6 +28,13 @@ class Client extends \yii\db\ActiveRecord
         ];
     }
     
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        
+        return $this->save(false);
+    }
+    
     public static function tableName()
     {
         return '{{%client_client}}';
