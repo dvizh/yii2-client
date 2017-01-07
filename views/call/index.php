@@ -3,6 +3,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use pistol88\client\models\Category;
+use pistol88\client\models\CallCategory;
 
 $this->title = 'Клиенты';
 $this->params['breadcrumbs'][] = $this->title;
@@ -27,61 +28,68 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'export' => false,
         'columns' => [
-            /*
-            [
-                'attribute' => 'image',
-                'filter' => false,
-                'content' => function ($image) {
-                    if($image->image && $image = $image->image->getUrl('100x100')) {
-                        return "<img src=\"{$image}\" class=\"thumb\" />";
-                    }
+            //['attribute' => 'id', 'filter' => false, 'options' => ['style' => 'width: 55px;']],
+            ['attribute' => 'time', 'label' => 'Время', 'content' => function($model) {
+                return date('d.m.Y H:i:s', strtotime($model->time));
+            }],
+            ['attribute' => 'client.name', 'label' => 'Клиент', 'content' => function($model) {
+                if($model->client) {
+                    return Html::a($model->client->name, [yii::$app->client->clientProfileUrl, 'id' => $model->client_id]);
                 }
-            ],
-             * */
-            ['attribute' => 'id', 'filter' => false, 'options' => ['style' => 'width: 55px;']],
-            [
-                'attribute' => 'client_id',
-                'content' => function($model) use ($module) {
-                    return $model->client->name;
+            }],
+            ['attribute' => 'staffer.name', 'label' => 'Сотрудник', 'content' => function($model) {
+                if($model->staffer) {
+                    return Html::a($model->staffer->name, [yii::$app->client->stafferProfileUrl, 'id' => $model->staffer_id]);
                 }
-            ],
-            [
-                'attribute' => 'staffer_id',
-                'content' => function($model) use ($module) {
-                    return $model->staffer->name;
-                }
-            ],
-            'time',
-            'status',
+            }],
             [
                 'attribute' => 'matter',
-                'filter' => function($model) {
-                    return yii::$app->client->callMatters;
-                },
-                'content' => function($model) use ($module) {
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'matter',
+                    yii::$app->client->callMatters,
+                    ['class' => 'form-control', 'prompt' => 'Предмет']
+                ),
+                'content' => function($model) {
                     return @yii::$app->client->callMatters[$model->matter];
                 }
             ],
             [
-                'attribute' => 'category_id',
-                'filter' => function($model) {
-                    return ArrayHelper::map(CallCategory::findAll([]), 'id', 'name');
-                },
-                'content' => function($model) use ($module) {
-                    return $model->category->name;
-                }
-            ],
-            [
                 'attribute' => 'result',
-                'filter' => function($model) {
-                    return yii::$app->client->callResults;
-                },
-                'content' => function($model) use ($module) {
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'result',
+                    yii::$app->client->callResults,
+                    ['class' => 'form-control', 'prompt' => 'Результат']
+                ),
+                'content' => function($model) {
                     return @yii::$app->client->callResults[$model->result];
                 }
             ],
-            'comment',
-            'created_at',
+            [
+                'attribute' => 'category_id',
+                'label' => 'Категория',
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'category_id',
+                    CallCategory::buildTextTree(),
+                    ['class' => 'form-control', 'prompt' => 'Категория']
+                ),
+                'value' => 'category.name'
+            ],
+            [
+                'attribute' => 'status',
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'status',
+                    yii::$app->client->clientStatuses,
+                    ['class' => 'form-control', 'prompt' => 'Статус']
+                ),
+                'content' => function($model) {
+                    return @yii::$app->client->clientStatuses[$model->status];
+                }
+            ],
+            ['class' => 'yii\grid\ActionColumn', 'controller' => '/client/call', 'template' => '{delete}',  'buttonOptions' => ['class' => 'btn btn-default'], 'options' => ['style' => 'width: 155px;']],
         ],
     ]); ?>
 

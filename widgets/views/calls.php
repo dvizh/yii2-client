@@ -23,6 +23,15 @@ use kartik\select2\Select2;
     
         <div class="row">
             <div class="col-md-6">
+                <?= $form->field($model, 'type')->dropDownList(['in' => 'Входящий', 'out' => 'Исходящий',]) ?>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6">
                 <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(CallCategory::find()->all(), 'id', 'name')) ?>
             </div>
             <div class="col-md-6">
@@ -68,11 +77,6 @@ use kartik\select2\Select2;
             //['attribute' => 'id', 'filter' => false, 'options' => ['style' => 'width: 55px;']],
             ['attribute' => 'time', 'label' => 'Время', 'content' => function($model) {
                 return date('d.m.Y H:i:s', strtotime($model->time));
-            }],
-            ['attribute' => 'client.name', 'label' => 'Клиент', 'content' => function($model) {
-                if($model->client) {
-                    return Html::a($model->client->name, [yii::$app->client->clientProfileUrl, 'id' => $model->client_id]);
-                }
             }],
             ['attribute' => 'staffer.name', 'label' => 'Сотрудник', 'content' => function($model) {
                 if($model->staffer) {

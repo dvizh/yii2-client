@@ -16,6 +16,7 @@ class m170107_893987_client_calls extends Migration
         try {
             $this->createTable('{{%client_call}}', [
                 'id' => Schema::TYPE_PK . "",
+                'type' => Schema::TYPE_STRING . "(55) NULL",
                 'category_id' => Schema::TYPE_INTEGER . "(11)",
                 'client_id' => Schema::TYPE_INTEGER . "(11) NOT NULL",
                 'staffer_id' => Schema::TYPE_INTEGER . "(11) NOT NULL",

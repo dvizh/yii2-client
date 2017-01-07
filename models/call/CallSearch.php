@@ -11,8 +11,8 @@ class CallSearch extends Call
     public function rules()
     {
         return [
-            [['id', 'staffer_id', 'client_id', 'matter'], 'integer'],
-            [['status', 'comment', 'date'], 'safe'],
+            [['id', 'staffer_id', 'client_id', 'category_id'], 'integer'],
+            [['status', 'comment', 'date', 'matter', 'result'], 'safe'],
         ];
     }
 
@@ -46,6 +46,7 @@ class CallSearch extends Call
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
+            'result' => $this->result,
             'staffer_id' => $this->staffer_id,
             'client_id' => $this->client_id,
             'status' => $this->status,

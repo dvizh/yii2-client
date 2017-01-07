@@ -51,6 +51,7 @@ class Call extends \yii\db\ActiveRecord
     {
         return [
           'id' => 'ID',
+          'type' => 'Обращение',
           'client_id' => 'Клиент',
           'staffer_id' => 'Сотрудник',
           'time' => 'Время',

@@ -76,7 +76,7 @@ if(yii::$app->has('organization')) {
                     ['class' => 'form-control', 'prompt' => 'Статус']
                 ),
                 'content' => function($model) use ($module) {
-                    return @yii::$app->client->clientStatuses,[$model->status];
+                    return @yii::$app->client->clientStatuses[$model->status];
                 }
             ],
             [
