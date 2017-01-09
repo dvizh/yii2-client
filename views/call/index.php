@@ -32,6 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute' => 'time', 'label' => 'Время', 'content' => function($model) {
                 return date('d.m.Y H:i:s', strtotime($model->time));
             }],
+            [
+                'attribute' => 'type',
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'type',
+                    ['in' => 'Входящий', 'out' => 'Исходящий'],
+                    ['class' => 'form-control', 'prompt' => 'Тип']
+                ),
+                'content' => function($model) {
+                    return ['in' => 'Входящий', 'out' => 'Исходящий'][$model->type];
+                }
+            ],
             ['attribute' => 'client.name', 'label' => 'Клиент', 'content' => function($model) {
                 if($model->client) {
                     return Html::a($model->client->name, [yii::$app->client->clientProfileUrl, 'id' => $model->client_id]);

@@ -12,7 +12,7 @@ class CallSearch extends Call
     {
         return [
             [['id', 'staffer_id', 'client_id', 'category_id'], 'integer'],
-            [['status', 'comment', 'date', 'matter', 'result'], 'safe'],
+            [['status', 'type', 'comment', 'date', 'matter', 'result'], 'safe'],
         ];
     }
 
@@ -51,6 +51,7 @@ class CallSearch extends Call
             'client_id' => $this->client_id,
             'status' => $this->status,
             'matter' => $this->matter,
+            'type' => $this->type,
         ]);
 
         $query->andFilterWhere(['like', 'comment', $this->comment]);

@@ -43,7 +43,7 @@ class Call extends \yii\db\ActiveRecord
         return [
             [['client_id', 'time'], 'required'],
             [['category_id', 'client_id', 'staffer_id'], 'integer'],
-            [['comment', 'result', 'status', 'matter'], 'string'],
+            [['comment', 'result', 'status', 'matter', 'type'], 'string'],
         ];
     }
 

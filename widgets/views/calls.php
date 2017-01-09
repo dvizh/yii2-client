@@ -84,6 +84,18 @@ use kartik\select2\Select2;
                 }
             }],
             [
+                'attribute' => 'type',
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'type',
+                    ['in' => 'Входящий', 'out' => 'Исходящий'],
+                    ['class' => 'form-control', 'prompt' => 'Тип']
+                ),
+                'content' => function($model) {
+                    return ['in' => 'Входящий', 'out' => 'Исходящий'][$model->type];
+                }
+            ],
+            [
                 'attribute' => 'matter',
                 'filter' => Html::activeDropDownList(
                     $searchModel,

@@ -13,6 +13,7 @@ pistol88.callWidget = {
 			$(form).attr('action'),
 			$(form).serialize(),
             function(answer) {
+                $(form).css('opacity', '1');
 				var json = $.parseJSON(answer);
                 if(json.result == 'success') {
 					$('.call-to-client-widget .modal').modal('hide');
