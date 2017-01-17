@@ -66,4 +66,9 @@ class Client extends Component
     {
         return $this->finder->one();
     }
+    
+    public function get($id)
+    {
+        return $this->finder->where(['id' => $id])->one();
+    }
 }

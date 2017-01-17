@@ -84,6 +84,13 @@ class Client extends \yii\db\ActiveRecord
         ];
     }
     
+    public function getUser()
+    {
+        $userModel = yii::$app->user->identityClass;
+        
+        return $userModel::find()->where(['id' => $this->user_id]);
+    }
+    
     public function getCalls()
     {
         return $this->haMany(Call::className(), ['client_id' => 'id']);

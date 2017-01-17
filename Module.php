@@ -5,7 +5,7 @@ use yii;
 
 class Module extends \yii\base\Module
 {
-    public $adminRoles = ['admin', 'superadmin'];
+    public $adminRoles = ['admin', 'superadmin', 'administrator'];
     public $clientStatuses = []; //Depricated
     public $activeStatuses = ['active'];
     public $payTypes = ['base' => 'Базовый'];
