@@ -92,7 +92,8 @@ use kartik\select2\Select2;
                     ['class' => 'form-control', 'prompt' => 'Тип']
                 ),
                 'content' => function($model) {
-                    return ['in' => 'Входящий', 'out' => 'Исходящий'][$model->type];
+                    $types = ['in' => 'Входящий', 'out' => 'Исходящий'];
+                    return $types[$model->type];
                 }
             ],
             [
