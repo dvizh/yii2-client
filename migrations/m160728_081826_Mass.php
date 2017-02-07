@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m160728_0818134444_Mass extends Migration {
+class m160728_081826_Mass extends Migration {
 
     public function safeUp() {
         if ($this->db->driverName === 'mysql') {
@@ -12,7 +12,7 @@ class m160728_0818134444_Mass extends Migration {
         else {
             $tableOptions = null;
         }
-        
+
         $connection = Yii::$app->db;
 
         try {
@@ -46,7 +46,7 @@ class m160728_0818134444_Mass extends Migration {
 
             $this->createIndex('id', '{{%client_category}}', 'id,parent_id', 0);
             $this->createIndex('status', '{{%client_client}}', 'status', 0);
-            
+
             $this->addForeignKey(
                 'fk_category_id', '{{%client_client}}', 'category_id', '{{%client_category}}', 'id', 'CASCADE', 'CASCADE'
             );

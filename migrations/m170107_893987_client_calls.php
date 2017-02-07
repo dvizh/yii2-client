@@ -1,5 +1,6 @@
 <?php
 use yii\db\Migration;
+use yii\db\Schema;
 
 class m170107_893987_client_calls extends Migration
 {
@@ -10,7 +11,7 @@ class m170107_893987_client_calls extends Migration
         else {
             $tableOptions = null;
         }
-        
+
         $connection = Yii::$app->db;
 
         try {
@@ -40,7 +41,7 @@ class m170107_893987_client_calls extends Migration
             $this->createIndex('status', '{{%client_call}}', 'status', 0);
             $this->createIndex('matter', '{{%client_call}}', 'matter', 0);
             $this->createIndex('result', '{{%client_call}}', 'result', 0);
-            
+
             $this->addForeignKey(
                 'fk_category_id', '{{%client_call}}', 'category_id', '{{%client_call_category}}', 'id', 'CASCADE', 'CASCADE'
             );
@@ -51,7 +52,7 @@ class m170107_893987_client_calls extends Migration
 
     public function safeDown() {
         $connection = Yii::$app->db;
-        
+
         try {
             $this->dropTable('{{%client_call}}');
             $this->dropTable('{{%client_call_category}}');
