@@ -41,7 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'form-control', 'prompt' => 'Тип']
                 ),
                 'content' => function($model) {
-                    return ['in' => 'Входящий', 'out' => 'Исходящий'][$model->type];
+                    $types = ['in' => 'Входящий', 'out' => 'Исходящий'];
+                    return $types[$model->type];
                 }
             ],
             ['attribute' => 'client.name', 'label' => 'Клиент', 'content' => function($model) {
