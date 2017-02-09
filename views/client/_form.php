@@ -5,10 +5,8 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use nex\datepicker\DatePicker;
 use pistol88\client\models\Category;
-use pistol88\client\models\Mark;
 use pistol88\gallery\widgets\Gallery;
 use kartik\select2\Select2;
-use pistol88\promocode\widgets\AddNew;
 
 \pistol88\client\assets\BackendAsset::register($this);
 ?>
@@ -89,14 +87,15 @@ use pistol88\promocode\widgets\AddNew;
                 <?php echo $form->field($model, 'organization_id')->dropDownList(array_merge(['' => 'Нет'], ArrayHelper::map($organizations, 'id', 'name'))) ?>
             </div>
         <?php } ?>
-        
-        <div class="col-lg-2 col-md-3 col-xs-5">
-            <?= $form->field($model, 'promocode')->textInput(['class' => 'place-to-new-promocode form-control']) ?>
-        </div>
-        <div class="col-lg-1 col-md-1 col-xs-1">
-            <label>Новый</label>
-            <?=AddNew::widget(['name' => $model->name]);?>
-        </div>
+        <?php if(yii::$app->has('promocode')) { ?>
+            <div class="col-lg-2 col-md-3 col-xs-5">
+                <?= $form->field($model, 'promocode')->textInput(['class' => 'place-to-new-promocode form-control']) ?>
+            </div>
+            <div class="col-lg-1 col-md-1 col-xs-1">
+                <label>Новый</label>
+                <?=\pistol88\promocode\widgets\AddNew::widget(['name' => $model->name]);?>
+            </div>
+        <?php } ?>
     </div>
 
     <?= $form->field($model, 'comment')->textArea() ?>
