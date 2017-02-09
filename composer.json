@@ -22,7 +22,7 @@
         "2amigos/yii2-grid-view-library": "*",
         "pistol88/yii2-gallery": "*",
         "pistol88/yii2-field": "*",
-        "kartik-v/yii2-grid": "*",
+        "kartik-v/yii2-grid": "*", 
         "nex/yii2-datepicker": "*"
     },
     "config": {
