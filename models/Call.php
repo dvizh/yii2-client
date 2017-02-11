@@ -82,9 +82,11 @@ class Call extends \yii\db\ActiveRecord
     
     public function getStaffer()
     {
-        $stafferModel = yii::$app->getModule('client')->stafferModel;
+        if($stafferModel = yii::$app->getModule('client')->stafferModel) {
+            return $this->hasOne($stafferModel, ['id' => 'staffer_id']);
+        }
         
-        return $this->hasOne($stafferModel, ['id' => 'staffer_id']);
+        return false;
     }
     
     public function afterSave($insert, $changedAttributes)
