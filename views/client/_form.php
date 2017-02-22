@@ -32,6 +32,10 @@ use kartik\select2\Select2;
         <?php } ?>
         <div class="col-lg-2 col-md-4 col-xs-6">
         
+            <?= $form->field($model, 'code')->textInput() ?>
+        </div>
+        <div class="col-lg-2 col-md-4 col-xs-6">
+        
             <?= $form->field($model, 'name')->textInput() ?>
         </div>
         <div class="col-lg-2 col-md-3 col-xs-6">
