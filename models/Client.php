@@ -53,7 +53,7 @@ class Client extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['code'], 'unique'],
-            [['category_id', 'sort', 'persent', 'organization_id'], 'integer'],
+            [['category_id', 'sort', 'persent', 'organization_id', 'user_id'], 'integer'],
             [['text', 'status', 'phone', 'email', 'birthday', 'comment', 'promocode'], 'string'],
             [['name', 'code'], 'string', 'max' => 200],
         ];
@@ -81,6 +81,7 @@ class Client extends \yii\db\ActiveRecord
             'created_at' => 'Дата добавления',
             'updated_at' => 'Дата редактирования',
             'organization_id' => 'Организация',
+            'user_id' => 'Пользователь',
         ];
     }
     
@@ -108,5 +109,11 @@ class Client extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+    
+    public function afterSave($insert, $changedAttributes){
+        parent::afterSave($insert, $changedAttributes);
+     
+        yii::$app->getModule('client')->registerUser($this);
     }
 }

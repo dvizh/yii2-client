@@ -82,6 +82,10 @@ use kartik\select2\Select2;
             </div>
         <?php } ?>
         
+        <div class="col-lg-2 col-md-3 col-xs-6">
+            <?php echo $form->field($model, 'user_id')->textInput() ?>
+        </div>
+        
         <?php if(yii::$app->has('organization') && $organizations = yii::$app->organization->getList()) { ?>
             <div class="col-lg-2 col-md-3 col-xs-6">
                 <?php echo $form->field($model, 'organization_id')->dropDownList(array_merge(['' => 'Нет'], ArrayHelper::map($organizations, 'id', 'name'))) ?>
@@ -101,6 +105,34 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'comment')->textArea() ?>
 
     <?php /* Gallery::widget(['model' => $model]); */ ?>
+    
+    <?php if(empty($model->user_id) && $model->id && yii::$app->getModule('client')->registerUserCallback) { ?>
+        <h3>Создание пользователя</h3>
+        <div class="row">
+            <div class="col-md-3 col-xs-6">
+                <div class="form-group field-user-name">
+                    <label class="control-label" for="user-name">Логин</label>
+                    <input type="text" id="user-name" class="form-control" name="user[login]" value="client<?=$model->id;?>" />
+                </div>        
+            </div>
+            <div class="col-md-3 col-xs-6">
+                <div class="form-group field-user-name">
+                    <label class="control-label" for="user-password">Пароль</label>
+                    <input type="text" id="user-password" class="form-control" name="user[password]" value="<?=substr(md5(rand(0, 9999999).'-'.rand(0, 999).$_SERVER['REMOTE_ADDR']), 0, 7);?>" />
+                </div>        
+            </div>
+            <div class="col-md-3 col-xs-6">
+                <div class="form-group field-user-name">
+                    <label class="control-label" for="user-name">Полномочия</label>
+                    <select name="user[roles][]" class="form-control" multiple>
+                        <?php foreach(yii::$app->getModule('client')->userRoles as $roleId => $roleName) { ?>
+                            <option value="<?=$roleId;?>" <?php if($roleId == yii::$app->getModule('client')->defaultRole) echo 'selected="selected"'; ?>><?=$roleName;?></option>
+                        <?php } ?>
+                    </select>
+                </div>        
+            </div>
+        </div>
+    <?php } ?>
     
     <div class="form-group client-control">
         <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
