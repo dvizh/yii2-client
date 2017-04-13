@@ -114,6 +114,9 @@ class Client extends \yii\db\ActiveRecord
     public function afterSave($insert, $changedAttributes){
         parent::afterSave($insert, $changedAttributes);
      
-        yii::$app->getModule('client')->registerUser($this);
+        if($userId = yii::$app->getModule('client')->registerUser($this)) {
+            $this->user_id = $userId;
+            $this->save(false);
+        }
     }
 }
