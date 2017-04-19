@@ -6,6 +6,7 @@ use pistol88\client\models\Category;
 use pistol88\client\models\CallCategory;
 
 $this->title = 'Клиенты';
+$this->params['breadcrumbs'][] = ['label' => 'Клиенты', 'url' => ['/client/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 \pistol88\client\assets\BackendAsset::register($this);

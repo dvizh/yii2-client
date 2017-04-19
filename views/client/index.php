@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use pistol88\client\models\Category;
 
 $this->title = 'Клиенты';
+$this->params['breadcrumbs'][] = ['label' => 'Клиенты', 'url' => ['/client/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 \pistol88\client\assets\BackendAsset::register($this);
