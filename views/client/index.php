@@ -23,7 +23,7 @@ if(yii::$app->has('organization')) {
             <?= Html::a('Добавить клиента', ['create'], ['class' => 'btn btn-success']) ?>
         </div>
         <div class="col-md-10">
-            <?=$this->render('../parts/menu');?>
+
         </div>
     </div>
     

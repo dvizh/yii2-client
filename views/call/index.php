@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
         </div>
         <div class="col-md-10">
-            <?=$this->render('../parts/menu');?>
+
         </div>
     </div>
     

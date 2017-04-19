@@ -8,6 +8,7 @@ use yii;
 class Client extends Component
 {
     public $clientStatuses = [
+        'client' => 'Наш клиент',
         'cold' => 'Холодный',
         'potencial' => 'Потенциальный',
         'warm' => 'Теплый',
@@ -33,8 +34,8 @@ class Client extends Component
     ];
     
     public $callMatters = [
-        'rework' => 'Сайт',
-        'task' => 'Продвижение',
+        'question' => 'Вопрос по продукту',
+        'task' => 'Прочий вопрос',
     ];
     
     public $finder = null;

@@ -6,6 +6,7 @@ Yii2-client
 
 * Клиенты (имя, фото, статус и т.д.)
 * Категории сотрудников
+* Обращения клиентов
 
 Установка
 ---------------------------------
@@ -54,16 +55,16 @@ php yii migrate --migrationPath=vendor/pistol88/yii2-client/migrations
 В секцию components:
 
 ```
-        'client' => [
-            'class' => 'pistol88\client\Client',
-        ],
+    'client' => [
+        'class' => 'pistol88\client\Client',
+    ],
 ```
 
 Использование
 ---------------------------------
-* ?r=client/client/index - сотрудники
-* ?r=client/category/index - категории
+* ?r=client/default/index - список CRUD
 
 Виджеты
 ---------------------------------
-Виджеты в разработке.
+
+* pistol88\client\widgets\Calls::widget(['client' => $clientModel]); - выведет список обращений с возможностью добавить новое
