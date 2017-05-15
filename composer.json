@@ -22,6 +22,7 @@
         "2amigos/yii2-grid-view-library": "*",
         "pistol88/yii2-gallery": "*",
         "pistol88/yii2-field": "*",
+        "dvizh/yii2-promocode": "*",
         "kartik-v/yii2-grid": "*", 
         "nex/yii2-datepicker": "*"
     },

@@ -1,11 +1,9 @@
 <?php
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use nex\datepicker\DatePicker;
 use pistol88\client\models\Category;
-use pistol88\gallery\widgets\Gallery;
 use kartik\select2\Select2;
 
 \pistol88\client\assets\BackendAsset::register($this);
@@ -101,7 +99,7 @@ use kartik\select2\Select2;
             </div>
             <div class="col-lg-1 col-md-1 col-xs-1">
                 <label>Новый</label>
-                <?=\pistol88\promocode\widgets\AddNew::widget(['name' => $model->name]);?>
+                <?=\dvizh\promocode\widgets\AddNew::widget(['name' => $model->name]);?>
             </div>
         <?php } ?>
     </div>
