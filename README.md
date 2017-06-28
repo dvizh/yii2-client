@@ -13,13 +13,13 @@ Yii2-client
 Выполнить команду
 
 ```
-php composer require pistol88/yii2-client "*"
+php composer require dvizh/yii2-client "*"
 ```
 
 Или добавить в composer.json
 
 ```
-"pistol88/yii2-client": "*",
+"dvizh/yii2-client": "*",
 ```
 
 И выполнить
@@ -31,7 +31,7 @@ php composer update
 Далее, мигрируем базу:
 
 ```
-php yii migrate --migrationPath=vendor/pistol88/yii2-client/migrations
+php yii migrate --migrationPath=vendor/dvizh/yii2-client/migrations
 ```
 
 Не забываем выполнить миграцию модулуй, от которых зависит client
@@ -45,7 +45,7 @@ php yii migrate --migrationPath=vendor/pistol88/yii2-client/migrations
     'modules' => [
         //..
         'client' => [
-            'class' => 'pistol88\client\Module',
+            'class' => 'dvizh\client\Module',
             'adminRoles' => ['administrator'],
         ],
         //..
@@ -56,7 +56,7 @@ php yii migrate --migrationPath=vendor/pistol88/yii2-client/migrations
 
 ```
     'client' => [
-        'class' => 'pistol88\client\Client',
+        'class' => 'dvizh\client\Client',
     ],
 ```
 
@@ -67,4 +67,4 @@ php yii migrate --migrationPath=vendor/pistol88/yii2-client/migrations
 Виджеты
 ---------------------------------
 
-* pistol88\client\widgets\Calls::widget(['client' => $clientModel]); - выведет список обращений с возможностью добавить новое
+* dvizh\client\widgets\Calls::widget(['client' => $clientModel]); - выведет список обращений с возможностью добавить новое
