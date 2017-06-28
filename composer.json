@@ -1,12 +1,12 @@
 {
-    "name": "pistol88/yii2-client",
+    "name": "dvizh/yii2-client",
     "description": "CRUD for a firm clients",
-    "keywords": ["yii2", "yii 2", "application", "backend", "crud", "client", "module", "pistol88"],
-    "homepage": "https://github.com/pistol88/yii2-client",
+    "keywords": ["yii2", "yii 2", "application", "backend", "crud", "client", "module", "dvizh"],
+    "homepage": "https://github.com/dvizh/yii2-client",
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
     "support": {
-        "source": "https://github.com/pistol88/yii2-client"
+        "source": "https://github.com/dvizh/yii2-client"
     },
     "authors": [
         {
@@ -20,8 +20,8 @@
         "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
         "2amigos/yii2-grid-view-library": "*",
-        "pistol88/yii2-gallery": "*",
-        "pistol88/yii2-field": "*",
+        "dvizh/yii2-gallery": "*",
+        "dvizh/yii2-field": "*",
         "dvizh/yii2-promocode": "*",
         "kartik-v/yii2-grid": "*", 
         "nex/yii2-datepicker": "*"
@@ -31,10 +31,10 @@
     },
     "autoload": {
         "psr-4": {
-            "pistol88\\client\\": ""
+            "dvizh\\client\\": "src\\"
         }
     },
     "extra": {
-        "bootstrap": "pistol88\\client\\Bootstrap"
+        "bootstrap": "dvizh\\client\\Bootstrap"
     }
 }
